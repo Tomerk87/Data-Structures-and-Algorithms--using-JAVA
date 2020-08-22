@@ -123,9 +123,21 @@ public class BinarySearchTree {
                         this.root.right = rightNode;
                     } else {
                         if (current.value < parentNode.value) {
-                            parentNode.left = current.right.left;
+                            Node candidate = current.right.left;
+                            parentNode.left = candidate;
+                            candidate.right = current.right;
+                            candidate.left = current.left;
+                            candidate.right.left = null;
+                            current.left = null;
+                            current.right = null;
                         } else if (current.value > parentNode.value) {
-                            parentNode.right = current.right.left;
+                            Node candidate = current.right.left;
+                            parentNode.right = candidate;
+                            candidate.right = current.right;
+                            candidate.left = current.left;
+                            candidate.right.left = null;
+                            current.left = null;
+                            current.right = null;
                         }
                     }
                 }
